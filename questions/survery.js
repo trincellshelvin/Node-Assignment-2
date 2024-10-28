@@ -11,9 +11,14 @@ async function runSurvey() {
         choices: seasons.map(season => ({ name: season, value: season }))
     });
 
-    favoriteSeason.forEach(season => {
-        console.log(`\nFor ${season}, the comfort foods are: ${comfortFoods[season].join(', ')}`);
-    });
+    for (const season of favoriteSeason) {
+        console.log(`\nFor ${season}, please select your favorite comfort foods:`);
+        const favoriteComfortFoods = await checkbox({
+            message: `Select your favorite comfort foods for ${season}:`,
+            choices: comfortFoods[season].map(food => ({ name: food, value: food }))
+        });
+        console.log(`Your favorite comfort foods for ${season} are: ${favoriteComfortFoods.join(', ')}`);
+    }
 
     console.log('\nThank you for participating in the survey!');
 }
