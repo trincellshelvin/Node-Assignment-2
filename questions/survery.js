@@ -10,6 +10,7 @@ async function runSurvey() {
         message: 'Select your favorite season(s):',
         choices: seasons.map(season => ({ name: season, value: season }))
     });
+    console.log(`Selected seasons: ${favoriteSeason.join(', ')}`); // Debug log
 
     for (const season of favoriteSeason) {
         console.log(`\nFor ${season}, please select your favorite comfort foods:`);
